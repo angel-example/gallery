@@ -1,0 +1,13 @@
+<material-fab (click)="handleClick()" aria-label="add" primary raised>
+    <glyph icon="add" z-elevation="2"></glyph>
+</material-fab>
+<div *ngIf="works.isEmpty">
+    <h3>No artworks found. :(</h3>
+    <br />
+    <material-button (click)="handleClick()" primary raised>Create one</material-button>
+</div>
+<ul *ngIf="works.isNotEmpty">
+    <li *ngFor="let artwork of works">
+        <a>{{artwork.title}}</a>
+    </li>
+</ul>
