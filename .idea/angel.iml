@@ -12,7 +12,12 @@
       <excludeFolder url="file://$MODULE_DIR$/test/services/packages" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tool/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/app/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/artwork_list/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/upload/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/services/packages" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

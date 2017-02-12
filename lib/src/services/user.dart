@@ -1,10 +1,15 @@
-import 'package:angel_framework/angel_framework.dart';
-import 'package:angel_mongo/angel_mongo.dart';
+import 'package:angel_common/angel_common.dart';
+import 'package:angel_validate/server.dart';
 import 'package:crypto/crypto.dart' show sha256;
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:validate/validate.dart';
 import '../models/user.dart';
 export '../models/user.dart';
+
+final Validator CREATE_USER = new Validator({
+  'username*': [isString, isNotEmpty],
+  'password*': [isString, isNotEmpty],
+  'email*': [isString, isEmail]
+});
 
 configureServer(Db db) {
   return (Angel app) async {
@@ -34,7 +39,7 @@ class UserService extends Service {
   index([Map params]) {
     if (params != null && params.containsKey("provider")) {
       // Nobody needs to see the entire user list except for the server.
-      throw new AngelHttpException.Forbidden();
+      throw new AngelHttpException.forbidden();
     }
 
     return _inner.index(params);
@@ -44,20 +49,12 @@ class UserService extends Service {
   create(data, [Map params]) {
     if (params != null && params.containsKey("provider")) {
       // Deny creating users to the public - this should be done by the server only.
-      throw new AngelHttpException.Forbidden();
+      throw new AngelHttpException.forbidden();
     }
 
-    try {
-      Validate.isKeyInMap("username", data);
-      Validate.isKeyInMap("password", data);
-      Validate.isEmail(data["email"]);
-      data["password"] = hashPassword(data["password"]);
-    } catch (e) {
-      throw new AngelHttpException.BadRequest(
-          message: "User must have a username, e-mail address and password.");
-    }
-
-    return _inner.create(data, params);
+    var userData = CREATE_USER.enforce(data);
+    userData["password"] = hashPassword(userData["password"]);
+    return _inner.create(userData, params);
   }
 
   @override

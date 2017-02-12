@@ -18,7 +18,7 @@ configureRoutes(Angel app) async {
   app.group('/api', (router) {
     router.post('/upload', (RequestContext req, Configuration config) async {
       if (req.files.length != 1)
-        throw new AngelHttpException.BadRequest(message: 'Please upload exactly one file.');
+        throw new AngelHttpException.badRequest(message: 'Please upload exactly one file.');
 
       final upload = req.files.first;
       final dir = new Directory(config.upload_path);
@@ -41,7 +41,7 @@ configureRoutes(Angel app) async {
 configureAfter(Angel app) async {
   // 404 handler
   app.after.add((req, ResponseContext res) async {
-    throw new AngelHttpException.NotFound();
+    throw new AngelHttpException.notFound();
   });
 
   // Default error handler

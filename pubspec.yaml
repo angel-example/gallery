@@ -5,20 +5,15 @@ author: Tobe O
 homepage: https://github.com/angel-dart/angel
 publish_to: none
 dependencies:
-  angel_auth: ^1.0.0-dev
-  angel_client: ^1.0.0-dev
+  angel_common: ^1.0.0-alpha
   angel_configuration: ^1.0.0-dev
-  angel_diagnostics: ^1.0.0-dev
-  angel_framework: ^1.0.0-dev
-  angel_mongo: ^1.0.0-dev
-  angel_mustache: ^1.0.0-dev
-  angel_proxy: ^1.0.0-dev
-  angel_static: ^1.1.0-dev
   angular2: ^2.0.0
-  angular2_components: ^0.1.1
+  angular2_components: ^0.2.2
   dart_to_js_script_rewriter: ^1.0.0
   mailer: ^1.1.0+4
-  validate: ^1.5.2
+  material_menu: ^1.0.0
+  material_sidenav: ^1.0.0
+  material_toolbar: ^1.0.0
 dev_dependencies:
   http: ^0.11.3
   grinder: ^0.8.0+2

@@ -4,7 +4,7 @@ import 'package:angular2/core.dart' show Component;
 import 'package:angular2/router.dart' show OnActivate, Router, RouterLink;
 import 'package:angular2_components/angular2_components.dart'
     show GlyphComponent, MaterialButtonComponent, MaterialFabComponent;
-import '../../services/app.dart';
+import '../../services/backend.dart';
 
 @Component(
     selector: 'artwork-list',
@@ -29,8 +29,8 @@ class ArtworkListComponent implements OnActivate {
   Service _service;
   final List<Artwork> works = [];
 
-  ArtworkListComponent(AppService appService, this._router) {
-    _service = appService.service('api/artworks');
+  ArtworkListComponent(BackendService backend, this._router) {
+    _service = backend.service('api/artworks');
   }
 
   fetchWorks() {
